@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!--
+Diese Datei beeinhaltet die Konfiguration der Heizungssteuerung.
+Folgende Elemente stehen zur Verfügung:
+einstellungen
+ ist_speichern (Gibt an ob Ist-Werte mitgeschrieben werden)
+pumpe
+ aktiv (Gibt an ob eine Pumpe angesteuert werden muss)
+ relais (Gibt gpio von Relais an, Attribut sollte nur verwendet werden wenn
+         Pumpe aktiv ist, da ansonsten beim System-Start die direction gesetzt
+         wird)
+raum (name)
+ nummer (Hat keine Funktion und kann weg gelassen werden)
+ sensor (Pfad zum Sensor)
+ relais (Gpio von Heizung im Raum)
+ soll (name)
+  start (Start der Soll-Zone)
+  ende (Ende der Soll-Zone)
+  temperatur (Temperatur der Soll-Zone)
+  (Sollten sich zwei Zonen ueberlappen, so greift die letztere. Im besten Fall
+  wird der komplette Tag buendig abgedeckt.)
+-->
+<konfiguration>
+  <einstellungen>
+    <ist_speichern>True</ist_speichern>
+    <1wire_gpio>4</1wire_gpio>
+  </einstellungen>
+
+  <pumpe>
+    <aktiv>False</aktiv>
+    <relais>17</relais>
+  </pumpe>
+
+  <raum name="Raum 1">
+    <nummer>1</nummer>
+    <sensor>/sys/bus/w1/devices/28-00000452df1d/w1_slave</sensor>
+    <relais>7</relais>
+
+    <soll name="Vormittags">
+      <start>06:00</start>
+      <ende>12:00</ende>
+      <temperatur>19.0</temperatur>
+    </soll>
+    <soll name="Nachmittags">
+      <start>12:00</start>
+      <ende>20:00</ende>
+      <temperatur>20.0</temperatur>
+    </soll>
+    <soll name="Nachts">
+      <start>20:00</start>
+      <ende>06:00</ende>
+      <temperatur>15.0</temperatur>
+    </soll>
+  </raum>
+
+  <raum name="Raum 2">
+    <nummer>2</nummer>
+    <sensor>/sys/bus/w1/devices/28-000004523996/w1_slave</sensor>
+    <relais>8</relais>
+    <soll name="Tag">
+      <start>06:00</start>
+      <ende>20:00</ende>
+      <temperatur>19.0</temperatur>
+    </soll>
+    <soll name="Nacht">
+      <start>20:00</start>
+      <ende>06:00</ende>
+      <temperatur>20.0</temperatur>
+    </soll>
+  </raum>
+
+  <raum name="Raum 3">
+    <nummer>3</nummer>
+    <sensor>/sys/bus/w1/devices/28-0000049d8e72/w1_slave</sensor>
+    <relais>9</relais>
+    <soll name="Immer">
+      <start>08:00</start>
+      <ende>08:00</ende>
+      <temperatur>22.0</temperatur>
+    </soll>
+  </raum>
+
+  <raum name="Raum 4">
+    <nummer>4</nummer>
+    <sensor>/sys/bus/w1/devices/28-0000049da774/w1_slave</sensor>
+    <relais>10</relais>
+    <soll name="Immer">
+      <start>00:00</start>
+      <ende>00:00</ende>
+      <temperatur>15.0</temperatur>
+    </soll>
+  </raum>
+
+  <raum name="Raum 5">
+    <nummer>5</nummer>
+    <sensor>/sys/bus/w1/devices/28-00000452c431/w1_slave</sensor>
+    <relais>11</relais>
+    <soll name="1">
+      <start>06:00</start>
+      <ende>01:00</ende>
+      <temperatur>20.0</temperatur>
+    </soll>
+    <soll name="2">
+      <start>01:00</start>
+      <ende>06:00</ende>
+      <temperatur>15.0</temperatur>
+    </soll>
+  </raum>
+
+  <raum name="Raum 6">
+    <nummer>6</nummer>
+    <sensor>/sys/bus/w1/devices/28-00000451e8e6/w1_slave</sensor>
+    <relais>25</relais>
+    <soll name="Tag">
+      <start>12:00</start>
+      <ende>00:00</ende>
+      <temperatur>25.0</temperatur>
+    </soll>
+    <soll name="Nacht">
+      <start>00:00</start>
+      <ende>12:00</ende>
+      <temperatur>11.0</temperatur>
+    </soll>
+  </raum>
+</konfiguration>
