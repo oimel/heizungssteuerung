@@ -23,7 +23,7 @@ raum (name)
 <konfiguration>
   <einstellungen>
     <ist_speichern>True</ist_speichern>
-    <1wire_gpio>4</1wire_gpio>
+    <onewire_gpio>4</onewire_gpio>
   </einstellungen>
 
   <pumpe>

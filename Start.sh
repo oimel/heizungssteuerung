@@ -15,7 +15,7 @@ read_dom () {
 }
 
 while read_dom; do
-  if [[ $ENTITY == "1wire_gpio" ]] ; then
+  if [[ $ENTITY == "onewire_gpio" ]] ; then
     echo "1wire_gpio=$CONTENT"
     wire_gpio=$CONTENT
     echo "-----------------------------------"
