@@ -3,6 +3,7 @@
 Diese Datei beeinhaltet die Konfiguration der Heizungssteuerung.
 Folgende Elemente stehen zur Verfügung:
 einstellungen
+ onewire_gpio (Gpio des 1-wire)
  ist_speichern (Gibt an ob Ist-Werte mitgeschrieben werden)
 pumpe
  aktiv (Gibt an ob eine Pumpe angesteuert werden muss)

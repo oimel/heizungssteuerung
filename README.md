@@ -1,5 +1,5 @@
 # pi_heizungssteuerung
-Ein Pyhtron Skript für eine Heizungssteuerung realisiert mit dem Raspberry Pi.
+Ein Python Skript für eine Heizungssteuerung realisiert mit dem Raspberry Pi.
 
 Zweck dieses Skripts ist es, Temperaturen der Thermostate, die anhand der Konfigurations-Datei benannt werden, auszulesen um die aktuelle Temperatur eines
 Raumes festzustellen. Ebenfalls in der Konfigurations-Datei festgelegt, ist die Soll Temperatur. Ist diese groesser als der ausgelesene Wert, so wird ein Relais

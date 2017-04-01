@@ -37,6 +37,7 @@ einzelnen Dateien im Verzeichnis /ist gespeichert werden sollen.
 '''
 pumpe_aktiv = e.find("pumpe").find("aktiv").text.lower()
 print ("Einstellung: pumpe_aktiv=%s" % (pumpe_aktiv))
+pumpe_benoetigt = False;
 ist_speichern = e.find("einstellungen").find("ist_speichern").text.lower()
 print ("Einstellung: ist_speichern=%s" % (ist_speichern))
 
@@ -87,11 +88,11 @@ for raum in e.findall("raum"):
   zwei Messungen durchzufuehren, um danach eine Plausibilitaetspruefung
   vollziehen zu konnen.
   '''
-  fobj = open(sensor, "r")
-  for line in fobj:
+  f = open(sensor, "r")
+  for line in f:
    zuordnung = line.split("=")
    ist_m1 = zuordnung[1]
-  fobj.close()
+  f.close()
 
   #Zwischen den zwei Messungen wird eine Millisekunde gewartet.
   time.sleep(1)
@@ -100,11 +101,11 @@ for raum in e.findall("raum"):
   Gleicher Vorgang wie bereits erklaert, dieses Mal wird des Ergebnis jedoch in
   "ist_m2" gespeichert.
   '''
-  fobj = open(sensor, "r")
-  for line in fobj:
+  f = open(sensor, "r")
+  for line in f:
    zuordnung = line.split("=")
    ist_m2 = zuordnung[1]
-  fobj.close()
+  f.close()
 
   '''
   Da es sich bei den ausgelesenen Messwerten um Strings handelt, muessen diese
@@ -163,7 +164,7 @@ for raum in e.findall("raum"):
      if not (ist_g1 < 0): #... die beiden Werte unter 0 grad betragen
 
       '''
-      In der Konfigurations-Datei kann festgelegt werden, ob die Ist werte im
+      In der Konfigurations-Datei kann festgelegt werden, ob die Ist Werte im
       Verzeichnis /ist gespeichert werden sollen.
       '''
       if ist_speichern == "true":
@@ -296,7 +297,6 @@ for raum in e.findall("raum"):
  Relais angesteuert wird, wird die Pumpe (sofern aktiv) benoetigt. Hierfuer
  wird die Variable "pumpe_benoetigt" verwendet.
  '''
- pumpe_benoetigt = False;
  relais = raum.find("relais").text
  f = open("/sys/class/gpio/gpio%s/value" % (relais), "w")
  if ist_g1 < soll_temperatur:
